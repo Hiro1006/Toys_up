@@ -1,0 +1,58 @@
+<div class="mt-5">
+ <div class="row justify-content-center">
+   <h2 class="mt-2"><font color="#ff6347"><strong>あたらしいおもちゃ</strong></font></h2>
+</div>
+</div>
+
+
+<div class="mt-3">
+<div class="row justify-content-center">
+  <%= form_with model: @toy,url: toys_path, method: :post do |f| %>
+<div class="form-group row">
+   <div class="col-4">
+   <%= f.label:おもちゃの画像 %>
+   </div>
+    <div class="col-8">
+    <%= f.file_field :image, accept: "image/*",class:"pl-3"%>
+    </div>
+ </div>
+<div class="form-group row">
+      <div class="col-4">
+      <%= f.label:おもちゃのなまえ%>
+      </div>
+       <div class="col-8">
+       <%= f.text_field :name,class:"pl-3"%>
+       </div>
+</div>
+
+
+<div class="form-group row">
+    <div class="col-4">
+    <%= f.label:せつめいぶん%>
+    </div>
+    <div class="col-8">
+    <%= f.text_area :caption,class:"pl-3"%>
+    </div>
+</div>
+
+
+<div class="form-group row">
+    <div class="col-4">
+    <%= f.label:ジャンル%>
+    </div>
+    <div class="col-8">
+    <%= f.collection_select :genre_id, Genre.all,:id,:name ,prompt: "ジャンルを選んでください",class:"pl-3" %></td>
+    </div>
+</div>
+
+
+<div class="form-group row">
+     <div class="col-4"></div>
+     <div class="col-8">
+     <%= f.submit "新規登録",class: 'btn btn-success' %>
+     </div>
+</div>
+<% end %>
+
+</div>
+</div>
