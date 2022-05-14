@@ -1,2 +1,24 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
+ <div class="container">
+    <h2 class="mt-4"><font color="#ff6347"><strong>おもちゃ一覧</strong></font></h2>
+            <table  class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">おもちゃのなまえ</th>
+                  <th scope="col">ジャンル</th>
+                  <th scope="col">せつめい</th>
+                  <th scope="col">もちぬし</th>
+                </tr>
+              </thead>
+
+                <tbody>
+                  <tr>
+                  <% @toys.each do |toy| %>
+                    <td><%= link_to toy.name,toy, class: "toy_#{toy.id}" %><%= toy.image %></td>
+                    <td><%= toy.genre.name %></td>
+                    <td><%= toy.caption %></td>
+                    <td><%= toy.end_user %></td>
+                  </tr>
+                  <% end %>
+                </tbody>
+            </table>
+  </div>

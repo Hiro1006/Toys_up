@@ -1,2 +1,59 @@
-<h1>Public::Toys#edit</h1>
-<p>Find me in app/views/public/toys/edit.html.erb</p>
+<div class="mt-5">
+ <div class="row justify-content-center">
+   <h3>投稿編集</h3>
+</div>
+</div>
+
+
+<div class="mt-3">
+<div class="row justify-content-center">
+  <%= form_with model: @toy,url: toy_path(@toy.id), method: :patch do |f| %>
+<div class="form-group row">
+   <div class="col-4">
+  <%= f.label:おもちゃの画像 %>
+  </div>
+  <div class="col-8">
+  <%= f.file_field :image, accept: "image/*",class:"pl-3" %>
+  </div>
+</div>
+
+
+<div class="form-group row">
+   <div class="col-4">
+   <%= f.label:おもちゃのなまえ%>
+   </div>
+   <div class="col-8">
+   <%= f.text_field :name,class:"pl-3"%>
+   </div>
+</div>
+
+<div class="form-group row">
+  <div class="col-4">
+  <%= f.label:せつめい%>
+  </div>
+  <div class="col-8">
+  <%= f.text_area :caption,class:"pl-3"%>
+  </div>
+</div>
+
+
+<div class="form-group row">
+  <div class="col-4">
+  <%= f.label:ジャンル%>
+  </div>
+  <div class="col-8">
+  <%= f.collection_select :genre_id, Genre.all,:id,:name ,prompt: "ジャンルを選んでください",class:"pl-3" %></td>
+  </div>
+</div>
+
+
+<div class="form-group row">
+  <div class="col-4"></div>
+  <div class="col-8">
+  <%= f.submit "変更を登録",class: 'btn btn-success' %>
+  </div>
+</div>
+<% end %>
+
+</div>
+</div>

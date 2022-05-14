@@ -23,6 +23,12 @@ class Public::EndUsersController < ApplicationController
     @end_user = current_end_user
   end
 
+  def favorites
+    @end_user = EndUser.find(params[:id])
+    favorites= Favorite.where(end_user_id: @end_user.id).pluck(:toy_id)
+    @favorite_toys = Toy.find(favorites)
+  end
+
    private
 
   def end_user_params

@@ -9,16 +9,20 @@
                   <th scope="col">ジャンル</th>
                   <th scope="col">せつめい</th>
                   <th scope="col">もちぬし</th>
+                  <th></th>
+                  <th></th>
                 </tr>
               </thead>
 
                 <tbody>
                   <tr>
                   <% @toys.each do |toy| %>
-                    <td><%= toy.name %><%= toy.image %></td>
+                    <td><%= link_to toy.name,toy, class: "toy_#{toy.id}" %><br><%= image_tag toy.image, size: "100x100" %></td>
                     <td><%= toy.genre.name %></td>
                     <td><%= toy.caption %></td>
-                    <td><%= toy.end_user %></td>
+                    <td><%= link_to toy.end_user.nickname, end_user_path(toy.end_user) %></td>
+                    <td><%= link_to "#{toy.post_comments.count} コメント", toy_path(toy.id) %></td>
+                    <td><%= link_to "♥#{toy.favorites.count}", toy_path(toy.id) %></td>
                   </tr>
                   <% end %>
                 </tbody>

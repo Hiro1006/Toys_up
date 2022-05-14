@@ -1,2 +1,52 @@
-<h1>Public::Toys#show</h1>
-<p>Find me in app/views/public/toys/show.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-12 offset-md-1'>
+  		<h2>Book detail</h2>
+  		<table class='table'>
+  		  <tr>
+          <td><%= link_to end_user_path(@toy_user.id) do %>
+            <%= @toy.name %>
+            <% end %>
+          </td>
+          <td><%= link_to @toy.name, @toy %></td>
+          <td><%= @toy.caption %></td>
+            <td>
+              <% if @toy.end_user == current_end_user %>
+              <%= link_to 'Edit', edit_toy_path(@toy), class: "btn btn-sm btn-success edit_book_#{@toy.id}" %></td>
+              <% end %>
+            <td>
+              <% if @toy.end_user == current_end_user %>
+              <%= link_to 'Destroy', @toy, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_toy_#{@toy.id}"%></td>
+              <% end %>
+            <td>
+              <p>コメント件数：<%= @toy.post_comments.count %></p>
+                <% @toy.post_comments.each do |post_comment| %>
+                <%= post_comment.end_user.nickname %>
+                <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+                <% if post_comment.end_user == current_end_user %>
+                <%= link_to "削除", toy_post_comment_path(post_comment.toy, post_comment), method: :delete %>
+                <% end %>
+                <% end %>
+            <div>
+              <%= form_with model: [@toy, @post_comment] do |f| %>
+              <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+              <%= f.submit "送信する" %>
+              <% end %>
+            </div>
+            </td>
+            <td>
+              <% if @toy.favorited_by?(current_end_user) %>
+              <%= link_to toy_favorites_path(@toy), method: :delete do %>
+              ♥<%= @toy.favorites.count %> いいね
+              <% end %>
+              <% else %>
+              <%= link_to toy_favorites_path(@toy), method: :post do %>
+              ♡<%= @toy.favorites.count %> いいね
+              <% end %>
+              <% end %>
+            </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
