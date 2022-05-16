@@ -26,11 +26,29 @@
       <th>メールアドレス</th>
       <td><%= @end_user.email %></td>
     </tr>
+    <tr>
+      <th>フォロワー数</th>
+      <td> <%= @end_user.followers.count %></td>
+    </tr>
 
   </tbody>
 </table>
 <%= link_to "お気に入り記事",favorites_end_user_path(@end_user), class: "btn btn-warning mb-4" %><br>
 <%= link_to "プロフィールを編集する", edit_end_user_path(@end_user), class: "btn btn-success mb-4" %><br>
+<% unless @end_user.id == current_end_user.id %> <!--現在ログインしているユーザーではないという条件をつけ、APIのメソッドを使って、相互フォロー状態の時という条件を表す-->
+  <% if (current_end_user.following? @end_user) && (@end_user.following? current_end_user) %>
+  <% if @isRoom == true %>
+    <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">チャットへ</a>
+  <% else %>
+    <%= form_for @room do |f| %>
+      <%= fields_for @entry do |e| %>
+        <%= e.hidden_field :end_user_id, value: @end_user.id %>
+      <% end %>
+      <%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat"%>
+    <% end %>
+  <% end %>
+  <% end %>
+<% end %>
 
 
     </div>

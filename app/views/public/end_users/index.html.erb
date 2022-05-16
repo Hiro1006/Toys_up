@@ -6,6 +6,7 @@
     <thead>
       <tr>
         <th>ニックネーム</th>
+        <th></th>
       </tr>
     </thead>
     <% @end_users.each do |end_user| %>
@@ -14,6 +15,15 @@
         <td>
           <i class="far fa-user"></i>
             <%= end_user.nickname %>
+        </td>
+        <td>フォロー数: <%= end_user.followings.count %></td>
+        <td>フォロワー数: <%= end_user.followers.count %></td>
+        <td>
+          <% if current_end_user.following?(end_user) %>
+            <%= link_to "フォロー外す", end_user_relationships_path(end_user.id), method: :delete %>
+          <% else %>
+            <%= link_to "フォローする", end_user_relationships_path(end_user.id), method: :post %>
+          <% end %>
         </td>
       </tr>
     </tbody>

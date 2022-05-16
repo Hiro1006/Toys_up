@@ -47,6 +47,12 @@ class Public::ToysController < ApplicationController
     redirect_to toys_path
   end
 
+  def search #検索機能(gemなし)
+    @toys = Toy.search(params[:search])
+    # binding.irb
+#@toyは好きなものを入力して、Toyの部分には検索したいテーブル名を入力する
+  end
+
   private
 
   def toy_params

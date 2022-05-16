@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+    get 'genres/show' #TOPページのジャンル検索用
+  namespace :public do
+    get 'relationships/followings'
+    get 'relationships/followers'
+  end
   #顧客側のTOPページとaboutページのルーティング
   root "public/homes#top"
   get "about" => "public/homes#about"
@@ -34,18 +39,26 @@ Rails.application.routes.draw do
 
   #ユーザ側のルーティング
   scope module: :public do
+    resources :messages, only: [:create]
+    resources :rooms, only: [:create,:show]
     patch '/end_users/withdraw' => 'end_users#withdraw', as: 'withdraw'
     get 'end_users/unsubscribe' => 'end_users#unsubscribe', as: 'unsubscribe'
     resources :end_users,only: [:index, :show, :edit, :update] do
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
       member do
       get :favorites
       end
     end
+    get 'toys/search', to: 'toys#search'
     resources :toys,only: [:index, :show, :new, :create, :edit, :update, :destroy] do
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
+    resources :genres, only: [:show]
   end
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

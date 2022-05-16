@@ -1,7 +1,20 @@
 <div class="container my-5">
   <div class="row justify-content-center">
     <div class="col-2">
-
+			<table class="table table-bordered table-hover text-center ec-genre-list" >
+				<tr>
+					<td>
+					<%= link_to "全商品を表示", toys_path %>
+					</td>
+				</tr>
+					<% @genres.each do |genre| %>
+				<tr>
+					<td>
+					<%= link_to genre.name,genre_path(genre.id)%>
+					</td>
+					</tr>
+					<% end %>
+					</table>
     </div>
     <div class="col-10">
       <section class="main-visual mt-4">
@@ -11,13 +24,29 @@
             <div class="card-img-overlay">
               <h1 class="text-left"><font color="#ff9933"><strong>WELCOME TO<br> Toys Up</strong></font></h1>
               <h2 class="text-left"><font color="#ff9933"><strong>おもちゃで繋げる未来</strong></font></h1>
-             
+
             </div>
           </div>
         </div>
       </section>
-      
-      
+      <div class="pv">
+        <h3 class="bg-warning mt-5 text-center">新しい投稿</h3>
+        <div class="d-flex justify-content-center flex-row flex-wrap mt-3">
+          <% @toys.each do |toy| %>
+              <div class="card m-1">
+                <%= link_to toy_path(toy), class: "text-dark" do %>
+                  <div class="card-img-top"><%= image_tag toy.image, size: "150x150" %></div>
+                  <div class="card-title lead"><%= toy.name %></div>
+                <% end %>
+              </div>
+            <% end %>
+        </div>
+        <div class="text-right">
+          <%= link_to toys_path do %>
+            ＞投稿をすべて見る
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

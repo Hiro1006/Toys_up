@@ -1,6 +1,24 @@
 class Public::EndUsersController < ApplicationController
+  before_action :authenticate_end_user!, only: [:show]
   def show
-    @end_user = current_end_user
+    @end_user = EndUser.find(params[:id])
+    @currentEnduserEntry=Entry.where(end_user_id: current_end_user.id)
+    @enduserEntry=Entry.where(end_user_id: @end_user.id)
+    unless @end_user.id == current_end_user.id
+      @currentEnduserEntry.each do |cu|
+        @enduserEntry.each do |u|
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+      if @isRoom
+      else
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
   end
 
   def edit
@@ -27,6 +45,19 @@ class Public::EndUsersController < ApplicationController
     @end_user = EndUser.find(params[:id])
     favorites= Favorite.where(end_user_id: @end_user.id).pluck(:toy_id)
     @favorite_toys = Toy.find(favorites)
+  end
+
+  def unsubscribe
+     @end_user = EndUser.find_by(email: params[:email])
+  end
+
+  def withdraw
+    @end_user = current_end_user
+    @end_user.is_deleted = true
+    @end_user.save!
+    reset_session
+    flash[:success] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+    redirect_to root_path
   end
 
    private

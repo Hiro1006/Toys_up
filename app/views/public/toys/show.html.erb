@@ -1,14 +1,24 @@
 <div class='container'>
   <div class='row'>
     <div class='col-md-12 offset-md-1'>
-  		<h2>Book detail</h2>
-  		<table class='table'>
+  		<font size="6" face="Comic Sans MS" color="#ff6347">Toy detail</font>
+  		<table  class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">おもちゃのなまえ</th>
+                  <th scope="col">がぞう</th>
+                  <th scope="col">せつめい</th>
+                  <th scope="col"></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
   		  <tr>
-          <td><%= link_to end_user_path(@toy_user.id) do %>
+          <td>
             <%= @toy.name %>
-            <% end %>
           </td>
-          <td><%= link_to @toy.name, @toy %></td>
+          <td><%= image_tag @toy.image, size: "100x100" %></td>
           <td><%= @toy.caption %></td>
             <td>
               <% if @toy.end_user == current_end_user %>
@@ -18,6 +28,18 @@
               <% if @toy.end_user == current_end_user %>
               <%= link_to 'Destroy', @toy, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_toy_#{@toy.id}"%></td>
               <% end %>
+
+            <td>
+              <% if @toy.favorited_by?(current_end_user) %>
+              <%= link_to toy_favorites_path(@toy), method: :delete do %>
+              <i class="fa fa-heart unlike-btn" color="red"></i><%= @toy.favorites.count %> いいね
+              <% end %>
+              <% else %>
+              <%= link_to toy_favorites_path(@toy), method: :post do %>
+              <i class="fa fa-heart like-btn" color="red"></i><%= @toy.favorites.count %> いいね
+              <% end %>
+              <% end %>
+            </td>
             <td>
               <p>コメント件数：<%= @toy.post_comments.count %></p>
                 <% @toy.post_comments.each do |post_comment| %>
@@ -34,18 +56,8 @@
               <% end %>
             </div>
             </td>
-            <td>
-              <% if @toy.favorited_by?(current_end_user) %>
-              <%= link_to toy_favorites_path(@toy), method: :delete do %>
-              ♥<%= @toy.favorites.count %> いいね
-              <% end %>
-              <% else %>
-              <%= link_to toy_favorites_path(@toy), method: :post do %>
-              ♡<%= @toy.favorites.count %> いいね
-              <% end %>
-              <% end %>
-            </td>
         </tr>
+        </tbody>
       </table>
     </div>
   </div>
