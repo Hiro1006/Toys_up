@@ -32,4 +32,14 @@ class EndUser < ApplicationRecord
   def following?(end_user)
     followings.include?(end_user)
   end
+
+   def self.search(search) #検索機能
+    if search
+      EndUser.where(['nickname LIKE ?', "%#{search}%"])
+#Toyには検索したいテーブル、nameには検索したいカラム名を入力する
+    else
+      EndUser.all
+#検索結果が当てはまらない場合は全て表示させる（必要ない場合は削除する）
+    end
+   end
 end

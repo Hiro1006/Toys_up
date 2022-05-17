@@ -59,6 +59,12 @@ class Public::EndUsersController < ApplicationController
     flash[:success] = "ありがとうございました。またのご利用を心よりお待ちしております。"
     redirect_to root_path
   end
+  
+  def search #検索機能(gemなし)
+    @end_users = EndUser.search(params[:search])
+    # binding.irb
+#@toyは好きなものを入力して、Toyの部分には検索したいテーブル名を入力する
+  end
 
    private
 

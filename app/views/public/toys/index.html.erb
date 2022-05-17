@@ -1,9 +1,10 @@
  <div class="container">
     <h2 class="mt-4"><font color="#ff4500"><strong>おもちゃ一覧</strong></font></h2>
   <%= form_tag(toys_search_path,:method => 'get') do %>
-  <%= label_tag '名前で検索' %>
+  <%= label_tag 'キーワード検索' %>
   <%= text_field_tag :search %>
   <%= submit_tag 'Search', :toy => nil %>
+  
 <% end %>
       <div><%= link_to "投稿する", new_toy_path, class:"btn btn-danger row justify-content-end mt-1 mb-2" %></div>
 

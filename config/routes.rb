@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :messages, only: [:create]
     resources :rooms, only: [:create,:show]
+    get 'end_users/search', to: 'end_users#search'
     patch '/end_users/withdraw' => 'end_users#withdraw', as: 'withdraw'
     get 'end_users/unsubscribe' => 'end_users#unsubscribe', as: 'unsubscribe'
     resources :end_users,only: [:index, :show, :edit, :update] do
