@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     root "homes#top"
     resources :end_users,only: [:index, :show, :edit, :update] do
     end
-    resources :toys,only: [:index, :show, :edit, :update] do
+    resources :toys,only: [:index, :show, :edit, :update, :destroy] do
     end
     resources :genres,only: [:index, :create, :edit, :update] do
     end

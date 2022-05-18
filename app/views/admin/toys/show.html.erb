@@ -1,2 +1,30 @@
-<h1>Admin::Toys#show</h1>
-<p>Find me in app/views/admin/toys/show.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-12 offset-md-1'>
+  		<font size="6" face="Comic Sans MS" color="#ff6347">Toy detail</font>
+  		<table  class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">おもちゃのなまえ</th>
+                  <th scope="col">がぞう</th>
+                  <th scope="col">せつめい</th>
+                  <th scope="col"></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+  		  <tr>
+          <td>
+            <%= @toy.name %>
+          </td>
+          <td><%= image_tag @toy.image, size: "100x100" %></td>
+          <td><%= @toy.caption %></td>
+            <td>
+              <%= link_to 'Destroy', @toy, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_toy_#{@toy.id}"%></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
