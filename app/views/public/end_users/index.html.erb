@@ -19,15 +19,15 @@
       <tr>
         <td>
           <i class="far fa-user"></i>
-            <%= end_user.nickname %>
+            <%= link_to end_user.nickname, end_user_path(end_user) %>
         </td>
         <td>フォロー数: <%= end_user.followings.count %></td>
         <td>フォロワー数: <%= end_user.followers.count %></td>
         <td>
           <% if current_end_user.following?(end_user) %>
-            <%= link_to "フォロー外す", end_user_relationships_path(end_user.id), method: :delete %>
+            <%= link_to "フォロー外す", end_user_relationships_path(end_user.id), method: :delete, class: "glyphicon glyphicon-home btn btn-danger" %>
           <% else %>
-            <%= link_to "フォローする", end_user_relationships_path(end_user.id), method: :post %>
+            <%= link_to "フォローする", end_user_relationships_path(end_user.id), method: :post, class: "glyphicon glyphicon-home btn btn-info" %>
           <% end %>
         </td>
       </tr>
