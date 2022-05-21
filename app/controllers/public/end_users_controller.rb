@@ -37,7 +37,7 @@ class Public::EndUsersController < ApplicationController
   end
 
   def index
-    @end_users = EndUser.all
+    @end_users = EndUser.page(params[:page]).per(10)
     @end_user = current_end_user
   end
 

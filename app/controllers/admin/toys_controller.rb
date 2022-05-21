@@ -1,13 +1,13 @@
 class Admin::ToysController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @toys = Toy.all
+    @toys = Toy.page(params[:page]).per(10)
   end
 
   def show
     @toy = Toy.find(params[:id])
   end
-  
+
   def edit
      @toy = Toy.find(params[:id])
   end
@@ -27,7 +27,7 @@ class Admin::ToysController < ApplicationController
     redirect_to admin_toys_path
   end
 
-  
+
   private
 
   def toy_params

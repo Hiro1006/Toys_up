@@ -1,6 +1,6 @@
 class Public::ToysController < ApplicationController
   def index
-    @toys = Toy.all
+    @toys = Toy.page(params[:page]).per(10)
     @toy = Toy.new
 
   end

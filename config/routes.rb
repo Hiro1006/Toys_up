@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   #ゲストログイン用
   post '/guests/guest_sign_in', to: 'public/guests#new_guest'
 
+
+
+
   # 顧客用
   # URL /end_users/sign_in ...
   devise_for :end_users,skip: [:passwords], controllers: {
@@ -39,6 +42,11 @@ Rails.application.routes.draw do
 
   #ユーザ側のルーティング
   scope module: :public do
+      #お問い合わせ機能
+  resources :contacts, only: [:new, :create]
+  post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
+  post 'contacts/back', to: 'contacts#back', as: 'back'
+  get 'done', to: 'contacts#done', as: 'done'
     resources :messages, only: [:create]
     resources :rooms, only: [:create,:show]
     get 'end_users/search', to: 'end_users#search'
