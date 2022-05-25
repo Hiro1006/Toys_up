@@ -3,6 +3,8 @@
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   before_action :reject_end_user, only: [:create]
+  
+  
 
   protected
 

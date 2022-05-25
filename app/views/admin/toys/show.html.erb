@@ -5,10 +5,10 @@
   		<table  class="table table-hover">
               <thead>
                 <tr>
-                  <th scope="col">おもちゃのなまえ</th>
+                  <th scope="col"><i class="fas fa-gift"></i>おもちゃのなまえ</th>
                   <th scope="col">がぞう</th>
-                  <th scope="col">せつめい</th>
-                  <th scope="col"></th>
+                  <th scope="col"><i class="fas fa-file-signature"></i>せつめい</th>
+                  <th scope="col"><i class="fas fa-user"></i>もちぬし</th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -20,8 +20,10 @@
           </td>
           <td><%= image_tag @toy.image, size: "100x100" %></td>
           <td><%= @toy.caption %></td>
-            <td>
-              <%= link_to 'Destroy', @toy, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_toy_#{@toy.id}"%></td>
+          <td><%= link_to @toy.end_user.nickname, admin_end_user_path(@toy.end_user) %></td>
+          <td>
+              <%= link_to 'Destroy', @toy, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_toy_#{@toy.id}"%>
+          </td>
         </tr>
         </tbody>
       </table>

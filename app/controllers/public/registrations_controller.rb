@@ -7,6 +7,9 @@ class Public::RegistrationsController < Devise::RegistrationsController
      redirect_to root_path, alert: 'ゲストユーザーは削除できません。'
    end
  end
+ def after_sign_up_path_for(resource)
+     end_user_path(@end_user.id)
+ end
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
