@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: toys
+#
+#  id          :integer          not null, primary key
+#  caption     :text
+#  name        :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  end_user_id :integer
+#  genre_id    :integer
+#
 class Toy < ApplicationRecord
   has_one_attached:image
 

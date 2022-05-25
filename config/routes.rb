@@ -1,3 +1,6 @@
+# == Route Map
+#
+
 Rails.application.routes.draw do
     get 'genres/show' #TOPページのジャンル検索用
   namespace :public do
