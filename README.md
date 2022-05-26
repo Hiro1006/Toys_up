@@ -24,10 +24,13 @@
 
 ### 主な利用シーン
 - 使わなくなったおもちゃを誰かのおもちゃと交換したい時
-- こどものおもちゃについてフォロワーと話したい時
+- こどものおもちゃについて誰かと情報交換をしたいとき
 - お子様に物を大切にする機会に触れさせたい時
 
 ## 設計書
+- ER図: https://app.diagrams.net/#G104eVWpNLepmcsJCtj8v2qhVugB5ZfVlu
+- テーブル定義書: https://docs.google.com/spreadsheets/d/1lkRtv_snBxmfSHJWcYUKgMNeVv2DnEXuKW7k2kGVtFY/edit#gid=856357510
+- 詳細設計書: https://docs.google.com/spreadsheets/d/1F7Ys8EybBWMbP0eEbcsOqkCuuAmQhd5nBMiYsLb4iak/edit#gid=2133469642
 
 
 ## 開発環境
