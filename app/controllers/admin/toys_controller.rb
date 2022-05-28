@@ -1,7 +1,7 @@
 class Admin::ToysController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @toys = Toy.page(params[:page]).per(10)
+    @toys = Toy.page(params[:page]).per(5)
   end
 
   def show
