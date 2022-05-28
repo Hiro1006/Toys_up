@@ -32,7 +32,7 @@
       <div class="pv">
         <h3 class="bg-warning mt-5 text-center">あたらしい投稿</h3>
         <div class="d-flex justify-content-center flex-row flex-wrap mt-3">
-          <% @toys.last(4).each do |toy| %>
+          <% @toys.last(5).each do |toy| %>
               <div class="card m-1">
                 <%= link_to toy_path(toy), class: "text-dark" do %>
                   <div class="card-img-top"><%= image_tag toy.image, size: "150x150" %></div>

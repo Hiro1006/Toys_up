@@ -18,7 +18,7 @@
           <td>
             <%= @toy.name %>
           </td>
-          <td><%= image_tag @toy.image, size: "100x100" %></td>
+          <td><%= image_tag @toy.image, size: "200x200" %></td>
           <td><%= @toy.caption %></td>
           <td><%= link_to @toy.end_user.nickname, admin_end_user_path(@toy.end_user) %></td>
           <td>

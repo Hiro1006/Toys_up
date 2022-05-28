@@ -1,6 +1,6 @@
-<div class='container'>
+<div class="container" style="margin-top: 20px;">
   <div class='row'>
-    <div class='col-md-11 offset-md-1'>
+    <div class='col-md-12'>
   		<font size="6" face="Comic Sans MS" color="#ff6347">Toy detail</font>
   		<table  class="table table-hover">
               <thead>
@@ -12,53 +12,52 @@
                   <th></th>
                   <th></th>
                   <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
-  		  <tr>
-          <td>
-            <%= @toy.name %>
-          </td>
-          <td><%= image_tag @toy.image, size: "100x100" %></td>
-          <td><%= @toy.caption %></td>
-          <td><%= link_to @toy.end_user.nickname, end_user_path(@toy.end_user) %></td>
-            <td>
-              <% if @toy.end_user == current_end_user %>
-              <%= link_to 'Edit', edit_toy_path(@toy), class: "btn btn-sm btn-success edit_book_#{@toy.id}" %></td>
-              <% end %>
-            <td>
-              <% if @toy.end_user == current_end_user %>
-              <%= link_to 'Destroy', @toy, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_toy_#{@toy.id}"%></td>
-              <% end %>
-
-            <td>
-              <% if @toy.favorited_by?(current_end_user) %>
-              <%= link_to toy_favorites_path(@toy), method: :delete do %>
-              <i class="fa fa-heart unlike-btn" color="red"></i><%= @toy.favorites.count %> いいね
-              <% end %>
-              <% else %>
-              <%= link_to toy_favorites_path(@toy), method: :post do %>
-              <i class="fa fa-heart like-btn" color="red"></i><%= @toy.favorites.count %> いいね
-              <% end %>
-              <% end %>
-            </td>
-            <td>
-              <p>コメント件数：<%= @toy.post_comments.count %></p>
-                <% @toy.post_comments.each do |post_comment| %>
-                <%= post_comment.end_user.nickname %>
-                <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-                <% if post_comment.end_user == current_end_user %>
-                <%= link_to "削除", toy_post_comment_path(post_comment.toy, post_comment), method: :delete %>
-                <% end %>
-                <% end %>
-            <div>
-              <%= form_with model: [@toy, @post_comment] do |f| %>
-              <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-              <%= f.submit "送信する" %>
-              <% end %>
-            </div>
-            </td>
-        </tr>
+  		          <tr>
+                  <td><%= @toy.name %></td>
+                  <td><%= image_tag @toy.image, size: "200x200" %></td>
+                  <td><%= @toy.caption %></td>
+                  <td><%= link_to @toy.end_user.nickname, end_user_path(@toy.end_user) %></td>
+                    <td>
+                      <% if @toy.end_user == current_end_user %>
+                      <%= link_to 'Edit', edit_toy_path(@toy), class: "btn btn-sm btn-success edit_book_#{@toy.id}" %></td>
+                      <% end %>
+                    <td>
+                      <% if @toy.end_user == current_end_user %>
+                      <%= link_to 'Destroy', @toy, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_toy_#{@toy.id}"%></td>
+                      <% end %>
+        
+                    <td>
+                      <% if @toy.favorited_by?(current_end_user) %>
+                      <%= link_to toy_favorites_path(@toy), method: :delete do %>
+                      <i class="fa fa-heart unlike-btn" color="red"></i><%= @toy.favorites.count %> いいね
+                      <% end %>
+                      <% else %>
+                      <%= link_to toy_favorites_path(@toy), method: :post do %>
+                      <i class="fa fa-heart like-btn" color="red"></i><%= @toy.favorites.count %> いいね
+                      <% end %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <p>コメント件数：<%= @toy.post_comments.count %></p>
+                        <% @toy.post_comments.each do |post_comment| %>
+                        <%= post_comment.end_user.nickname %>
+                        <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+                        <% if post_comment.end_user == current_end_user %>
+                        <%= link_to "削除", toy_post_comment_path(post_comment.toy, post_comment), method: :delete %>
+                        <% end %>
+                        <% end %>
+                    <div>
+                      <%= form_with model: [@toy, @post_comment] do |f| %>
+                      <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+                      <%= f.submit "送信する" %>
+                      <% end %>
+                    </div>
+                    </td>
+                </tr>
         </tbody>
       </table>
     </div>

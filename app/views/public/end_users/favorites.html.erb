@@ -15,7 +15,7 @@
                 <tbody>
                   <tr>
                   <% @favorite_toys.each do |toy|%>
-                    <td><%= link_to toy.name,toy, class: "toy_#{toy.id}" %><br><%= image_tag toy.image, size: "100x100" %></td>
+                    <td><%= link_to toy.name,toy, class: "toy_#{toy.id}" %><br><%= image_tag toy.image, size: "200x200" %></td>
                     <td><%= toy.genre.name %></td>
                     <td><%= toy.caption %></td>
                     <td><%= link_to toy.end_user.nickname, end_user_path(toy.end_user) %></td>
