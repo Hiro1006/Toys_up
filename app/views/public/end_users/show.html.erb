@@ -39,10 +39,14 @@
   <% end %>
 </div>
 
-<% if @end_user == current_end_user %>
+<% if current_end_user == @guest_user %>
+<%= link_to "お気に入りの投稿",favorites_end_user_path(@end_user), class: "btn btn-warning mb-4" %>
+
+<% else @end_user == current_end_user %>
 <%= link_to "お気に入りの投稿",favorites_end_user_path(@end_user), class: "btn btn-warning mb-4" %><br>
 <%= link_to "登録情報の編集", edit_end_user_path(@end_user), class: "btn btn-success mb-4" %><br>
 <% end %>
+
 
 <% unless @end_user.id == current_end_user.id %> <!--現在ログインしているユーザーではないという条件をつけ、APIのメソッドを使って、相互フォロー状態の時という条件を表す-->
   <% if (current_end_user.following? @end_user) && (@end_user.following? current_end_user) %> <!--お互いにフォローしている関係を定義-->

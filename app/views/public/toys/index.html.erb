@@ -6,7 +6,11 @@
   <%= submit_tag 'Search', :toy => nil %>
 
 <% end %>
-      <div><%= link_to "投稿する", new_toy_path, class:"btn btn-secondary row justify-content-end mt-1 mb-2" %></div>
+      <div>
+        <% if end_user_signed_in? %>
+        <%= link_to "投稿する", new_toy_path, class:"btn btn-secondary row justify-content-end mt-1 mb-2" %>
+        <% end %>
+      </div>
 
             <table  class="table table-hover">
               <thead>

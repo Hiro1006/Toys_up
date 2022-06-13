@@ -1,6 +1,11 @@
 class Public::EndUsersController < ApplicationController
   before_action :authenticate_end_user!, only: [:show]
   def show
+    @guest_user =  EndUser.find_or_create_by!(email: 'guest@example.com') do |end_user|
+     end_user.nickname = "ゲスト"
+     end_user.password = 'password'
+     # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+    end
     @end_user = EndUser.find(params[:id])
     @currentEnduserEntry=Entry.where(end_user_id: current_end_user.id)
     @enduserEntry=Entry.where(end_user_id: @end_user.id)
