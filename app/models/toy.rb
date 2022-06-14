@@ -25,6 +25,8 @@ class Toy < ApplicationRecord
 
   validates :name,presence:true
   validates :caption,presence:true,length:{maximum:200}
+  validates :genre_id,presence:true
+  validates :image,presence:true
 
    def self.search(search) #検索機能
     if search
