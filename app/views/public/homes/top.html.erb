@@ -34,7 +34,9 @@
         <div class="d-flex justify-content-center flex-row flex-wrap mt-3">
           <% @toys.last(5).each do |toy| %>
               <div class="card m-1">
+
                 <%= link_to toy_path(toy), class: "text-dark" do %>
+
                   <div class="card-img-top"><%= image_tag toy.image, size: "200x200" %></div>
                   <div class="card-title lead"><%= toy.name %></div>
                 <% end %>
