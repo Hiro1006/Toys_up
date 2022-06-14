@@ -26,12 +26,21 @@
                 <tbody>
                   <% @toys.each do |toy| %>
                   <tr>
-                    <td><%= link_to toy.name,toy, class: "toy_#{toy.id}" %><br><%= image_tag toy.image, size: "200x200" %></td>
-                    <td><%= toy.genre.name %></td>
-                    <td><%= toy.caption %></td>
-                    <td><%= link_to toy.end_user.nickname, end_user_path(toy.end_user) %></td>
-                    <td><%= link_to "#{toy.post_comments.count} コメント", toy_path(toy.id) %></td>
-                    <td><i class="fa fa-heart like-btn" color="red"></i><%= toy.favorites.count %> いいね</td>
+                    <% if end_user_signed_in? %>
+                      <td><%= link_to toy.name,toy, class: "toy_#{toy.id}" %><br><%= image_tag toy.image, size: "200x200" %></td>
+                      <td><%= toy.genre.name %></td>
+                      <td><%= toy.caption %></td>
+                      <td><%= link_to toy.end_user.nickname, end_user_path(toy.end_user) %></td>
+                      <td><%= link_to "#{toy.post_comments.count} コメント", toy_path(toy.id) %></td>
+                      <td><i class="fa fa-heart like-btn" color="red"></i><%= toy.favorites.count %> いいね</td>
+                    <% else %>
+                      <td><%= image_tag toy.image, size: "200x200" %></td>
+                      <td><%= toy.genre.name %></td>
+                      <td><%= toy.caption %></td>
+                      <td><%= link_to toy.end_user.nickname, end_user_path(toy.end_user) %></td>
+
+                      <td><i class="fa fa-heart like-btn" color="red"></i><%= toy.favorites.count %> いいね</td>
+                    <% end %>
                   </tr>
                   <% end %>
                 </tbody>

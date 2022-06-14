@@ -9,9 +9,14 @@
 									<tr>
 										<% @toys.each do |toy| %>
 									<td>
-										<%=link_to toy_path(toy.id) do %>
-										<%= toy.name %><br>
-										<%= image_tag toy.image, size: "150x150" %>
+										<% if end_user_signed_in? %>
+											<%=link_to toy_path(toy.id) do %>
+												<%= toy.name %><br>
+												<%= image_tag toy.image, size: "150x150" %>
+											<% end %>
+										<% else %>
+												<%= toy.name %><br>
+												<%= image_tag toy.image, size: "150x150" %>
 										<% end %>
 									</td>
                   <% end %>
