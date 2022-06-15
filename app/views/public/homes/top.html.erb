@@ -32,7 +32,7 @@
       <div class="pv">
         <h3 class="bg-warning mt-5 text-center">あたらしい投稿</h3>
         <div class="d-flex justify-content-center flex-row flex-wrap mt-3">
-          <% @toys.last(5).each do |toy| %>
+          <% @toys.last(4).each do |toy| %>
               <div class="card m-1">
                 <% if end_user_signed_in? %>
                   <%= link_to toy_path(toy), class: "text-dark" do %>
